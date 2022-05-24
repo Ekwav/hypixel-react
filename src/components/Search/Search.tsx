@@ -45,6 +45,10 @@ function Search(props: Props) {
         });
     }
 
+    let redirect = () => {
+        window.location.href = "https://sky.coflnet.com" + window.location.pathname;
+    }
+
     let onSearchChange = (e: ChangeEvent) => {
         let newSearchText: string = (e.target as HTMLInputElement).value;
         searchText = newSearchText;
@@ -96,7 +100,7 @@ function Search(props: Props) {
         if (!props.selected) {
             return <p className="current"><Badge variant="primary">Current:</Badge> Auction Details</p>
         }
-        return <p className="current"><Badge variant="primary">Current:</Badge> <img crossOrigin="anonymous" src={props.selected.iconUrl} width="32" height="32" alt="" style={{ marginRight: "10px" }} loading="lazy"/>{props.selected.name || convertTagToName((props.selected as Item).tag)}</p>
+        return <p className="current"><Badge variant="primary">Current:</Badge> <img crossOrigin="anonymous" src={props.selected.iconUrl} width="32" height="32" alt="" style={{ marginRight: "10px" }} loading="lazy" />{props.selected.name || convertTagToName((props.selected as Item).tag)}</p>
     }
 
     return (
@@ -104,7 +108,7 @@ function Search(props: Props) {
             <Form>
                 <Form.Group>
                     <NavBar />
-                    <Form.Control type="text" placeholder="Search player/item" className="searchBar" value={searchText} onChange={onSearchChange} onKeyPress={(e: any) => { onKeyPress(e) }} />
+                    <Form.Control type="text" placeholder="Search player/item" className="searchBar" value={searchText} onChange={onSearchChange} onKeyPress={(e: any) => { onKeyPress(e) }} onclick={redirect} />
                 </Form.Group>
             </Form>
             {
@@ -117,7 +121,7 @@ function Search(props: Props) {
                                 results.map((result, i) => (
                                     <ListGroup.Item key={result.id} action onClick={(e: any) => { onItemClick(result) }} style={i === results.length - 1 ? { marginBottom: "10px" } : {}} >
                                         {result.dataItem.iconUrl ?
-                                            <img className="search-result-icon" crossOrigin="anonymous" width={32} height={32} src={result.dataItem.iconUrl} alt="" loading="lazy"/> :
+                                            <img className="search-result-icon" crossOrigin="anonymous" width={32} height={32} src={result.dataItem.iconUrl} alt="" loading="lazy" /> :
                                             <Spinner animation="border" role="status" variant="primary" />
                                         }
                                         {result.dataItem.name}
@@ -128,7 +132,7 @@ function Search(props: Props) {
             }
             <div className="bar">
                 {getSelectedElement()}
-                {isLoading ? "" : <OptionsMenu selected={props.selected}/>}
+                {isLoading ? "" : <OptionsMenu selected={props.selected} />}
             </div>
         </div >
     );
