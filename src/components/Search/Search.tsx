@@ -108,7 +108,7 @@ function Search(props: Props) {
             <Form>
                 <Form.Group>
                     <NavBar />
-                    <Form.Control type="text" placeholder="Search player/item" className="searchBar" value={searchText} onChange={onSearchChange} onKeyPress={(e: any) => { onKeyPress(e) }} onclick={redirect} />
+                    <Form.Control type="text" placeholder="Search player/item" className="searchBar" value={searchText} onChange={onSearchChange} onKeyPress={(e: any) => { onKeyPress(e) }} onClick={redirect} />
                 </Form.Group>
             </Form>
             {
