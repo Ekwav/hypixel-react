@@ -21,6 +21,9 @@ function RecentAuctions(props: Props) {
     useEffect(() => {
         mounted = true;
     })
+    let redirect = () => {
+        window.location.href = "https://sky.coflnet.com" + window.location.pathname;
+    }
 
     useEffect(() => {
         api.getRecentAuctions(props.item.tag, props.fetchspan, props.itemFilter).then(recentAuctions => {
@@ -74,11 +77,7 @@ function RecentAuctions(props: Props) {
     return (
         <div className="recent-auctions">
             <h3>Recent auctions</h3>
-            <div className="recent-auctions-list">
-                {
-                    recentAuctionList
-                }
-            </div>
+            <button onClick={redirect}>Click to see on new auction history page</button>
         </div >
     );
 }
